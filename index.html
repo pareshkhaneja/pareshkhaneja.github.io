@@ -15,26 +15,24 @@
 	<body class="is-preload landing">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-				<header id="header">
-					
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html" class="fa fa-address-card">About Me</a></li>
-							<li>
-								<a href="#" class="fa fa-laptop-code">GitHub Repositories</a>
-								<ul>
-									<li><a href="https://github.com/pareshkhaneja/Auto-Power-VM"">Auto-Power-VM</a></li>
-									<li><a href="https://github.com/pareshkhaneja/Desktop-Cleaner">Desktop-Cleaner</a></li>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#contact" class="fab fa-linkedin">Contact Me</a></li>
-							
-							<li><form method="get" action="resources/CV.pdf" target="_blank"><button type="submit" class="button primary"><i class="fa fa-download fa-s"></i> Resume</button></form></li>
-						</ul>
-					</nav>
-				</header>
+<div id="header-placeholder"></div>
+
+<script>
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    
+	// ✅ Define toggleMenu AFTER header loads
+      window.toggleMenu = function(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.toggle('hidden');
+        }
+      };
+    })
+    .catch(error => console.error('Error loading header:', error));
+</script>
 
 			<!-- Banner -->
 				<section id="banner">
@@ -48,70 +46,6 @@
 					</div>
 					<a href="#four" class="goto-next scrolly">Next</a>
 				</section>
-
-			<!-- One -->
-				<!--<section id="one" class="spotlight style1 bottom">
-					<span class="image fit main"><img src="images/pic01.jpg" alt="" /></span>
-					<div class="content">
-						<div class="container">
-							<div class="row">
-								<div class="col-4 col-12-medium">
-									<header>
-										<h2>Odio faucibus ipsum integer consequat</h2>
-										<p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
-									</header>
-								</div>
-								<div class="col-4 col-12-medium">
-									<p>Feugiat accumsan lorem eu ac lorem amet sed accumsan donec.
-									Blandit orci porttitor semper. Arcu phasellus tortor enim mi
-									nisi praesent dolor adipiscing. Integer mi sed nascetur cep aliquet
-									augue varius tempus lobortis porttitor accumsan consequat
-									adipiscing lorem dolor.</p>
-								</div>
-								<div class="col-4 col-12-medium">
-									<p>Morbi enim nascetur et placerat lorem sed iaculis neque ante
-									adipiscing adipiscing metus massa. Blandit orci porttitor semper.
-									Arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer
-									mi sed nascetur cep aliquet augue varius tempus. Feugiat lorem
-									ipsum dolor nullam.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
-				</section>-->
-
-			<!-- Two -->
-				<!--<section id="two" class="spotlight style2 right">
-					<span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum amet non magna accumsan</h2>
-							<p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
-				</section>-->
-
-			<!-- Three -->
-				<!--<section id="three" class="spotlight style3 left">
-					<span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum felis blandit praesent sed augue</h2>
-							<p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#four" class="goto-next scrolly">Next</a>
-				</section>-->
 
 			<!-- Four -->
 				<section id="four" class="wrapper style1 special fade-up">

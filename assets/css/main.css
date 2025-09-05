@@ -74,6 +74,15 @@ input, select, textarea {
 
 /* Basic */
 
+	.hidden {
+		display: none;
+	}
+
+	.nested {
+		margin-left: 1rem;
+		padding-left: 1rem;
+	}
+
 	html {
 		box-sizing: border-box;
 	}
