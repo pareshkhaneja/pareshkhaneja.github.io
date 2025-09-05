@@ -15,24 +15,44 @@
 	<body class="is-preload landing">
 		<div id="page-wrapper">
 
-<div id="header-placeholder"></div>
+			<!-- Header -->
+				<header id="header">
+					
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html" class="fa fa-address-card">About Me</a></li>
+							<li>
+								<a href="#" class="fa fa-laptop-code">GitHub Repositories</a>
+								<ul>
+									<li><a href="https://github.com/pareshkhaneja/Auto-Power-VM">Auto-Power-VM</a></li>
+									<li><a href="https://github.com/pareshkhaneja/Desktop-Cleaner">Desktop-Cleaner</a></li>
+									</li>
+								</ul>
+							</li>
 
-<script>
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('header-placeholder').innerHTML = data;
-    
-	// ✅ Define toggleMenu AFTER header loads
-      window.toggleMenu = function(id) {
-        const el = document.getElementById(id);
-        if (el) {
-          el.classList.toggle('hidden');
-        }
-      };
-    })
-    .catch(error => console.error('Error loading header:', error));
-</script>
+<li>
+  <a href="#" onclick="toggleMenu('year-2025')">📝 Blogs</a>
+  <ul id="year-2025" class="nested hidden">
+    <li>
+      <a href="#" onclick="toggleMenu('month-2025-09')">📅 2025</a>
+      <ul id="month-2025-09" class="nested hidden">
+        <li>
+          <a href="#" onclick="toggleMenu('posts-2025-09')">📆 September</a>
+          <ul id="posts-2025-09" class="nested hidden">
+            <li><a href="blog/2025/09/Demystifying-HTTP-Status-Codes.html">1. Demystifying HTTP Status Codes: A Beginner’s Guide for Postman Users</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li><a href="#contact" class="fab fa-linkedin">Contact Me</a></li>
+							
+							<li><form method="get" action="resources/CV.pdf" target="_blank"><button type="submit" class="button primary"><i class="fa fa-download fa-s"></i> Resume</button></form></li>
+						</ul>
+					</nav>
+				</header>
 
 			<!-- Banner -->
 				<section id="banner">
