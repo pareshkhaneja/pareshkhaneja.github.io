@@ -55,75 +55,179 @@
 					<div class="content">
 						<header>
 							<h2 align="center">Demystifying HTTP Status Codes: A Beginner’s Guide for Postman Users</h2>
-							<h3 align="left">👷‍♂️ Oops! This blog is still under construction.
-Just like APIs return 503 when they’re not ready — this page needs a bit more time. 😊</h2>
-						</header>
-					</div>
-					</section>
+							<h2 align="left">Introduction</h2>
+							<p align="left">Welcome! I am excited to share my first blog post and I hope you will learn something new and valuable from it.</p>
+							
+							<p align="left">Before we dive in, here’s what I’m assuming about you as a reader:</p>
+							<ol align="left">
+							<li>You are new or fairly new to APIs and Postman.</li>
+							<li>You have basic familiarity with Postman’s interface (how to send requests and see responses).</li>
+							<li>You understand the basic idea of what an API is (a way for applications to talk to each other).</li>
+							<li>You have some interest in testing or debugging APIs but may find HTTP status codes confusing.</li>
+							<li>You don’t need deep knowledge of HTTP protocols or server internals — this guide is focused on practical understanding of status codes as seen in Postman.</li>
+							</ol>
+							<h2 align="left">🔍What Are HTTP Status Codes?</h2>
+							<p align="left">
+    HTTP status codes are standardized responses given by servers when a client (like Postman) makes a request. 
+    They tell you what happened to your request—did it succeed, fail, or need some sort of correction?
+  </p>
+  <p align="left">These codes are grouped into five categories:</p>
+  <ul align="left">
+    <li><strong>1xx</strong> – Informational</li>
+    <li><strong>2xx</strong> – Success</li>
+    <li><strong>3xx</strong> – Redirection</li>
+    <li><strong>4xx</strong> – Client Error</li>
+    <li><strong>5xx</strong> – Server Error</li>
+  </ul>
+  
+  <section id="success-codes">
+  
+  <h3 align="left">✅2xx: Success Codes</h3>
+  <p align="left">These codes mean your request was successfully received, understood, and accepted.</p>
+  
+  <h3 align="left">🔹200 OK</h3>
+  <p align="left">The request was successful.<br>
+     <em>Example:</em> A <code>GET</code> request to fetch user data returns user info.</p><br>
 
-			<!-- One -->
-				<!--<section id="one" class="spotlight style1 bottom">
-					<span class="image fit main"><img src="images/pic01.jpg" alt="" /></span>
-					<div class="content">
-						<div class="container">
-							<div class="row">
-								<div class="col-4 col-12-medium">
-									<header>
-										<h2>Odio faucibus ipsum integer consequat</h2>
-										<p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
-									</header>
-								</div>
-								<div class="col-4 col-12-medium">
-									<p>Feugiat accumsan lorem eu ac lorem amet sed accumsan donec.
-									Blandit orci porttitor semper. Arcu phasellus tortor enim mi
-									nisi praesent dolor adipiscing. Integer mi sed nascetur cep aliquet
-									augue varius tempus lobortis porttitor accumsan consequat
-									adipiscing lorem dolor.</p>
-								</div>
-								<div class="col-4 col-12-medium">
-									<p>Morbi enim nascetur et placerat lorem sed iaculis neque ante
-									adipiscing adipiscing metus massa. Blandit orci porttitor semper.
-									Arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer
-									mi sed nascetur cep aliquet augue varius tempus. Feugiat lorem
-									ipsum dolor nullam.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
-				</section>-->
+  <h3 align="left">🔹201 Created</h3>
+  <p align="left">Used for <code>POST</code> requests when a new resource is created.<br>
+     <em>Example:</em> You sent a new user signup request, and it was saved to the database.</p><br>
 
-			<!-- Two -->
-				<!--<section id="two" class="spotlight style2 right">
-					<span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum amet non magna accumsan</h2>
-							<p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
-				</section>-->
+  <h3 align="left">🔹204 No Content</h3>
+  <p align="left">The request was successful, but there's no response body.<br>
+     <em>Example:</em> A successful <code>DELETE</code> request.</p><br>
+</section>
 
-			<!-- Three -->
-				<!--<section id="three" class="spotlight style3 left">
-					<span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum felis blandit praesent sed augue</h2>
-							<p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#four" class="goto-next scrolly">Next</a>
-				</section>-->
+
+<section id="redirection-codes">
+  <h3 align="left">🧭3xx: Redirection</h3>
+  <p align="left">These codes mean the resource you're trying to access has moved.</p><br>
+
+  <h3 align="left">🔹301 Moved Permanently</h3>
+  <p align="left">The resource has been moved to a new URL permanently.</p><br>
+  
+  <p align="left">🔁Example</p>
+  <pre align="left"><code>
+# In .htaccess (Apache server)
+Redirect 301 /old-page.html https://example.com/new-page.html
+</code></pre>
+<p align="left">This tells the browser that <code>/old-page.html</code> has permanently moved to a new URL.</p><br>
+
+  <h3 align="left">🔹302 Found (Temporary Redirect)</h3>
+  <p align="left">The resource is temporarily under a different URL.</p><br>
+  <p align="left">🔄Example</p>
+<pre align="left"><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta http-equiv="refresh" content="0; url=https://example.com/temporary-page.html"&gt;
+  &lt;title&gt;302 Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This page is temporarily moved. 
+  &lt;a href="https://example.com/temporary-page.html"&gt;Click here&lt;/a&gt; if not redirected.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+  <p align="left"><em>Note:</em> In Postman, these are less common unless you're testing websites or redirect flows.</p><br>
+</section>
+
+
+<section id="client-errors">
+  <h3 align="left">⚠️4xx: Client Errors</h3>
+  <p align="left">These indicate something is wrong with the request you sent.</p><br>
+
+  <h3 align="left">🔹400 Bad Request</h3>
+  <p align="left">The server can't understand your request due to bad syntax.<br>
+     <strong>Tip:</strong> Double-check your request body or query parameters.</p><br>
+
+  <h3 align="left">🔹401 Unauthorized</h3>
+  <p align="left">Authentication is required, and either missing or incorrect.<br>
+     <strong>Tip:</strong> Add or fix your API key, token, or login credentials.</p><br>
+
+  <h3 align="left">🔹403 Forbidden</h3>
+  <p align="left">You’re authenticated but not allowed to access the resource.<br>
+     <strong>Tip:</strong> Check your permissions or user role.</p><br>
+
+  <h3 align="left">🔹404 Not Found</h3>
+  <p align="left">The requested resource doesn’t exist.<br>
+     <strong>Tip:</strong> Check the URL or endpoint.</p><br>
+
+  <h3 align="left">🔹422 Unprocessable Entity</h3>
+  <p align="left">The server understands the content, but it’s semantically incorrect.<br>
+     <em>Example:</em> Missing required fields in your JSON body.</p><br>
+</section>
+
+
+<section id="server-errors">
+  <h3 align="left">💥5xx: Server Errors</h3>
+  <p align="left">These errors indicate that the problem is on the server side, not yours.</p>
+
+  <h3 align="left">🔹500 Internal Server Error</h3>
+  <p align="left">A general error occurred on the server.<br>
+     <strong>Tip:</strong> There’s not much you can do—check with backend developers.</p><br>
+
+  <h3 align="left">🔹502 Bad Gateway</h3>
+  <p align="left">The server received an invalid response from another server (upstream).<br>
+     <em>Common in systems with load balancers or proxies.</em></p><br>
+
+  <h3 align="left">🔹503 Service Unavailable</h3>
+  <p align="left">The server is currently unavailable (e.g., overload, maintenance).<br>
+     <strong>Tip:</strong> Try again later or notify your backend team.</p><br>
+</section>
+
+<section id="postman-testing">
+  <h3 align="left">🧪Using Postman to Test Status Codes</h3>
+  <p align="left">When using Postman:</p>
+  <ol align="left">
+    <li><strong>Check the Status Code</strong> – It’s displayed right below the "Send" button after making a request.</li>
+    <li><strong>Use Tests</strong> – You can write tests to validate status codes automatically:</li>
+  </ol>
+  <pre align="left"><code class="language-javascript">
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+  </code></pre>
+  <ol start="3", align="left">
+    <li><strong>Troubleshoot with Console</strong> – Use <em>View &gt; Show Postman Console</em> to debug issues.</li>
+  </ol>
+</section>
+
+<section id="quick-reference">
+  <h2 align="left">🧠Quick Reference Table</h2>
+  <table border="2" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th style="text-align: left;">Code</th>
+        <th style="text-align: left;">Meaning</th>
+        <th style="text-align: left;">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="text-align: left;">200</td><td style="text-align: left;">OK</td><td style="text-align: left;">✅ Success</td></tr>
+      <tr><td style="text-align: left;">201</td><td style="text-align: left;">Created</td><td style="text-align: left;">✅ Success</td></tr>
+      <tr><td style="text-align: left;">204</td><td style="text-align: left;">No Content</td><td style="text-align: left;">✅ Success</td></tr>
+      <tr><td style="text-align: left;">400</td><td style="text-align: left;">Bad Request</td><td style="text-align: left;">⚠️ Client Error</td></tr>
+      <tr><td style="text-align: left;">401</td><td style="text-align: left;">Unauthorized</td><td style="text-align: left;">⚠️ Client Error</td></tr>
+      <tr><td style="text-align: left;">403</td><td style="text-align: left;">Forbidden</td><td style="text-align: left;">⚠️ Client Error</td></tr>
+      <tr><td style="text-align: left;">404</td><td style="text-align: left;">Not Found</td><td style="text-align: left;">⚠️ Client Error</td></tr>
+      <tr><td style="text-align: left;">422</td><td style="text-align: left;">Unprocessable Entity</td><td style="text-align: left;">⚠️ Client Error</td></tr>
+      <tr><td style="text-align: left;">500</td><td style="text-align: left;">Internal Server Error</td><td style="text-align: left;">💥 Server Error</td></tr>
+      <tr><td style="text-align: left;">503</td><td style="text-align: left;">Service Unavailable</td><td style="text-align: left;">💥 Server Error</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="conclusion">
+  <h2 align="left">🏁Conclusion</h2>
+  <p align="left">
+    Understanding HTTP status codes is key to effective API testing and debugging in Postman. 
+    Now that you know what each code means, you’ll be better equipped to interpret responses, troubleshoot issues, 
+    and even write more effective test scripts.
+  </p>
+  <p align="left">Next time you see a 404 or a 500, don’t panic—you’ve got this.</p>
+</section>
 
 
 			<!-- Contact Me -->
@@ -154,7 +258,7 @@ Just like APIs return 503 when they’re not ready — this page needs a bit mor
 						<!--<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>-->
 					</ul>
 					<ul class="copyright">
-						<li>&copy; Paresh Khaneja and GitHub . ® All rights reserved 2024.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Paresh Khaneja and GitHub . ® All rights reserved 2025.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 					<p align="center" style="font-family: 'Great Vibes', cursive; font-size: 20px;"><strong>
 					
