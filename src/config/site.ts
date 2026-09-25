@@ -19,6 +19,7 @@ export const siteConfig = {
     github: "https://github.com/pareshkhaneja",
     linkedin: "https://in.linkedin.com/in/paresh-khaneja-8617045a",
   },
+  resumeUrl: "/CV.pdf",
   expertise: [
     {
       title: "Test automation",
