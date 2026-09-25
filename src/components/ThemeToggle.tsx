@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button";
 
 type Theme = "light" | "dark";
 
+type Props = {
+  variant?: "default" | "hero";
+};
+
 function getPreferredTheme(): Theme {
   if (typeof window === "undefined") return "light";
   const stored = window.localStorage.getItem("theme");
@@ -17,7 +21,7 @@ function applyTheme(theme: Theme) {
   document.documentElement.style.colorScheme = theme;
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ variant = "default" }: Props) {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
@@ -33,11 +37,17 @@ export default function ThemeToggle() {
     applyTheme(next);
   }
 
+  const heroClass =
+    variant === "hero"
+      ? "border-slate-600/50 bg-transparent text-slate-200 hover:bg-white/5"
+      : undefined;
+
   return (
     <Button
       type="button"
       variant="outline"
       size="icon"
+      className={heroClass}
       onClick={toggle}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
     >

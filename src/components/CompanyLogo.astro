@@ -1,0 +1,38 @@
+---
+interface Props {
+  variant: "globallogic" | "qualys" | "generic";
+}
+
+const { variant } = Astro.props;
+---
+
+{
+  variant === "globallogic" ? (
+    <div
+      class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-600 text-xs font-bold text-white"
+      aria-hidden="true"
+    >
+      GL
+    </div>
+  ) : variant === "qualys" ? (
+    <div
+      class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500 text-lg font-bold text-white"
+      aria-hidden="true"
+    >
+      Q
+    </div>
+  ) : (
+    <div
+      class="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-slate-600"
+      aria-hidden="true"
+    >
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"></path>
+      </svg>
+    </div>
+  )
+}

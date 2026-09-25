@@ -5,25 +5,18 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --color-background: oklch(0.99 0.01 250);
-  --color-foreground: oklch(0.22 0.02 255);
-  --color-muted: oklch(0.55 0.02 255);
-  --color-card: oklch(1 0 0 / 0.72);
-  --color-border: oklch(0.88 0.02 255);
-  --color-accent: oklch(0.55 0.19 255);
-  --color-accent-foreground: oklch(0.99 0.01 250);
-  --color-ring: oklch(0.55 0.19 255);
-}
-
-.dark {
-  --color-background: oklch(0.16 0.02 255);
-  --color-foreground: oklch(0.96 0.01 250);
-  --color-muted: oklch(0.72 0.02 255);
-  --color-card: oklch(0.22 0.02 255 / 0.72);
-  --color-border: oklch(0.32 0.02 255);
-  --color-accent: oklch(0.72 0.16 255);
-  --color-accent-foreground: oklch(0.16 0.02 255);
-  --color-ring: oklch(0.72 0.16 255);
+  --color-hero: #0a1020;
+  --color-hero-card: rgba(15, 23, 42, 0.72);
+  --color-hero-border: rgba(148, 163, 184, 0.18);
+  --color-page: #f1f5f9;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-hero: #e2e8f0;
+  --color-text-hero-muted: #94a3b8;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-success: #22c55e;
 }
 
 html {
@@ -32,21 +25,71 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-page);
+  color: var(--color-text);
   min-height: 100vh;
 }
 
-.mesh-bg {
+.hero-grid-bg {
+  background-color: var(--color-hero);
   background-image:
-    radial-gradient(at 0% 0%, oklch(0.88 0.08 255 / 0.35) 0, transparent 50%),
-    radial-gradient(at 100% 0%, oklch(0.9 0.06 200 / 0.25) 0, transparent 45%),
-    radial-gradient(at 50% 100%, oklch(0.92 0.05 280 / 0.2) 0, transparent 50%);
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(59, 130, 246, 0.22), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(139, 92, 246, 0.18), transparent 50%);
+  background-size:
+    48px 48px,
+    48px 48px,
+    auto,
+    auto;
 }
 
-.dark .mesh-bg {
-  background-image:
-    radial-gradient(at 0% 0%, oklch(0.35 0.12 255 / 0.35) 0, transparent 50%),
-    radial-gradient(at 100% 0%, oklch(0.32 0.1 200 / 0.25) 0, transparent 45%),
-    radial-gradient(at 50% 100%, oklch(0.28 0.08 280 / 0.3) 0, transparent 50%);
+.gradient-name {
+  background: linear-gradient(90deg, #f8fafc 0%, #c7d2fe 45%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-header {
+  background: rgba(10, 16, 32, 0.72);
+  border-bottom: 1px solid var(--color-hero-border);
+  backdrop-filter: blur(12px);
+}
+
+.nav-link-active {
+  color: #f8fafc;
+  box-shadow: inset 0 -2px 0 0 var(--color-primary);
+}
+
+.pill-dark {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--color-hero-border);
+  color: #e2e8f0;
+}
+
+.stat-card {
+  background: var(--color-hero-card);
+  border: 1px solid var(--color-hero-border);
+  backdrop-filter: blur(8px);
+}
+
+.section-card {
+  background: var(--color-surface);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.featured-panel {
+  background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  border: 1px solid #dbeafe;
+}
+
+.timeline-line {
+  background: linear-gradient(90deg, #3b82f6, #93c5fd);
+}
+
+.contact-card {
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
 }
