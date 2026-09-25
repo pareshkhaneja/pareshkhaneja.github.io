@@ -1,0 +1,107 @@
+---
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@/styles/global.css";
+
+import SiteHeader from "@/components/SiteHeader.astro";
+import { siteConfig } from "@/config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${siteConfig.name} · ${siteConfig.title}`,
+  description = siteConfig.description,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, siteConfig.url).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  image: siteConfig.avatarUrl,
+  jobTitle: siteConfig.title,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Gurgaon",
+    addressRegion: "Haryana",
+    addressCountry: "IN",
+  },
+  sameAs: [siteConfig.social.github, siteConfig.social.linkedin],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${siteConfig.url}/og-image.svg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteConfig.url}/og-image.svg`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "light" || stored === "dark" ? stored : prefersDark ? "dark" : "light";
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="mesh-bg">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--color-accent)] focus:px-3 focus:py-2 focus:text-[var(--color-accent-foreground)]"
+    >
+      Skip to content
+    </a>
+    <SiteHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="border-t border-[var(--color-border)] py-8">
+      <div
+        class="mx-auto flex max-w-5xl flex-col gap-3 px-4 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between sm:px-6"
+      >
+        <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--color-foreground)]">GitHub</a
+          >
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--color-foreground)]">LinkedIn</a
+          >
+          <a
+            href={siteConfig.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--color-foreground)]">Source</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

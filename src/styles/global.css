@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-background: oklch(0.99 0.01 250);
+  --color-foreground: oklch(0.22 0.02 255);
+  --color-muted: oklch(0.55 0.02 255);
+  --color-card: oklch(1 0 0 / 0.72);
+  --color-border: oklch(0.88 0.02 255);
+  --color-accent: oklch(0.55 0.19 255);
+  --color-accent-foreground: oklch(0.99 0.01 250);
+  --color-ring: oklch(0.55 0.19 255);
+}
+
+.dark {
+  --color-background: oklch(0.16 0.02 255);
+  --color-foreground: oklch(0.96 0.01 250);
+  --color-muted: oklch(0.72 0.02 255);
+  --color-card: oklch(0.22 0.02 255 / 0.72);
+  --color-border: oklch(0.32 0.02 255);
+  --color-accent: oklch(0.72 0.16 255);
+  --color-accent-foreground: oklch(0.16 0.02 255);
+  --color-ring: oklch(0.72 0.16 255);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  min-height: 100vh;
+}
+
+.mesh-bg {
+  background-image:
+    radial-gradient(at 0% 0%, oklch(0.88 0.08 255 / 0.35) 0, transparent 50%),
+    radial-gradient(at 100% 0%, oklch(0.9 0.06 200 / 0.25) 0, transparent 45%),
+    radial-gradient(at 50% 100%, oklch(0.92 0.05 280 / 0.2) 0, transparent 50%);
+}
+
+.dark .mesh-bg {
+  background-image:
+    radial-gradient(at 0% 0%, oklch(0.35 0.12 255 / 0.35) 0, transparent 50%),
+    radial-gradient(at 100% 0%, oklch(0.32 0.1 200 / 0.25) 0, transparent 45%),
+    radial-gradient(at 50% 100%, oklch(0.28 0.08 280 / 0.3) 0, transparent 50%);
+}

@@ -1,0 +1,38 @@
+---
+import MobileNav from "@/components/MobileNav";
+import ThemeToggle from "@/components/ThemeToggle";
+import { siteConfig } from "@/config/site";
+
+const nav = [
+  { href: "#about", label: "About" },
+  { href: "#expertise", label: "Expertise" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-background)]/80 backdrop-blur-md"
+>
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <a href="#" class="text-sm font-semibold tracking-tight sm:text-base">
+      {siteConfig.name}
+    </a>
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)]"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="relative flex items-center gap-2">
+      <ThemeToggle client:load />
+      <MobileNav client:load />
+    </div>
+  </div>
+</header>
