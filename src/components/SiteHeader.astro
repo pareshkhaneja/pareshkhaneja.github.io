@@ -5,29 +5,29 @@ import { siteConfig } from "@/config/site";
 ---
 
 <header class="glass-header sticky top-0 z-50">
-  <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
-    <a href="#home" class="flex min-w-0 items-center gap-3">
+  <div class="mx-auto flex max-w-[1320px] items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="#home" class="flex min-w-0 shrink-0 items-center gap-3">
       <span
-        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-sm font-bold text-slate-900"
+        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-sm font-bold text-slate-900"
         >PK</span
       >
-      <span class="min-w-0">
-        <span class="block truncate text-sm font-semibold text-white sm:text-base"
-          >{siteConfig.name}</span
+      <span class="hidden min-w-0 sm:block">
+        <span class="block truncate text-sm font-semibold text-white">{siteConfig.name}</span>
+        <span class="block truncate text-[11px] leading-tight text-slate-400"
+          >{siteConfig.title}</span
         >
-        <span class="block truncate text-xs text-slate-400">{siteConfig.title}</span>
       </span>
     </a>
 
-    <nav class="hidden flex-1 items-center justify-center gap-8 lg:flex" aria-label="Primary">
+    <nav class="hidden flex-1 items-center justify-center gap-7 xl:flex" aria-label="Primary">
       {
         siteConfig.nav.map((item, index) => (
           <a
             href={item.href}
             class:list={[
-              "text-sm transition-colors",
+              "text-[13px] transition-colors",
               index === 0
-                ? "nav-link-active pb-0.5 font-medium"
+                ? "nav-link-active pb-1 font-medium"
                 : "text-slate-400 hover:text-slate-100",
             ]}
             aria-current={index === 0 ? "page" : undefined}
@@ -38,13 +38,11 @@ import { siteConfig } from "@/config/site";
       }
     </nav>
 
-    <div class="ml-auto flex items-center gap-2 sm:gap-3">
-      <div class="hidden sm:block">
-        <ThemeToggle client:load variant="hero" />
-      </div>
+    <div class="ml-auto flex items-center gap-2">
+      <ThemeToggle client:load />
       <a
         href={siteConfig.resumeUrl}
-        class="hidden items-center gap-2 rounded-lg bg-[var(--color-primary)] px-3 py-2 text-xs font-medium text-white hover:bg-[var(--color-primary-hover)] sm:inline-flex sm:text-sm"
+        class="btn-resume-header hidden items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-white sm:inline-flex sm:text-sm"
       >
         <span aria-hidden="true">↓</span> Download Resume
       </a>

@@ -50,10 +50,14 @@ test.describe("Portfolio UI validation", () => {
     await expect(page.getByText("4 Stars")).toBeVisible();
   });
 
-  test("experience timeline and contact CTA", async ({ page }) => {
+  test("experience timeline is visible", async ({ page }) => {
     await page.locator("#experience").scrollIntoViewIfNeeded();
     await expect(page.getByText("GlobalLogic")).toBeVisible();
     await expect(page.getByText("Qualys")).toBeVisible();
+  });
+
+  test("contact banner CTA", async ({ page }) => {
+    await page.locator("#contact").scrollIntoViewIfNeeded();
     await expect(page.getByText("Let's Build Intelligent Quality Solutions")).toBeVisible();
     await expect(page.getByRole("link", { name: "Email Me" })).toBeVisible();
   });
@@ -76,10 +80,19 @@ test.describe("Portfolio UI validation", () => {
   });
 
   test("hero uses dark background styling", async ({ page }) => {
-    const hero = page.locator(".hero-grid-bg");
+    const hero = page.locator(".hero-shell");
     await expect(hero).toBeVisible();
-    const bg = await hero.evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(bg).not.toBe("rgba(0, 0, 0, 0)");
+    const bg = await hero.evaluate((el) => getComputedStyle(el).backgroundImage);
+    expect(bg).toContain("gradient");
+  });
+
+  test("hero shows three-column layout on desktop", async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.goto("/");
+    await expect(page.getByAltText("Portrait of Paresh Khaneja")).toBeVisible();
+    await expect(page.getByText("9+ Years of Experience")).toBeVisible();
+    const cols = await page.locator(".hero-inner").evaluate((el) => getComputedStyle(el).gridTemplateColumns);
+    expect(cols.split(" ").length).toBeGreaterThanOrEqual(3);
   });
 
   test("portrait image loads", async ({ page }) => {

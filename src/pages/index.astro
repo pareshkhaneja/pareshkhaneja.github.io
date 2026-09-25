@@ -5,7 +5,14 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import { siteConfig } from "@/config/site";
 
 const fp = siteConfig.featuredProject;
-const toneMap = {
+const expertiseBorder = {
+  blue: "expertise-card--blue",
+  green: "expertise-card--green",
+  purple: "expertise-card--purple",
+  orange: "expertise-card--orange",
+  red: "expertise-card--red",
+} as const;
+const iconBg = {
   blue: "bg-blue-50 text-blue-600",
   green: "bg-emerald-50 text-emerald-600",
   purple: "bg-violet-50 text-violet-600",
@@ -15,46 +22,48 @@ const toneMap = {
 ---
 
 <BaseLayout>
-  <div class="hero-grid-bg text-[var(--color-text-hero)]">
+  <div class="hero-shell text-[var(--color-text-hero)]">
     <SiteHeader />
-    <section id="home" class="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-      <div class="grid items-start gap-10 xl:grid-cols-[minmax(0,1fr)_280px_260px]">
-        <div id="about">
-          <div class="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-300">
-            <span class="inline-flex items-center gap-1.5">
-              <span aria-hidden="true">📍</span>
+    <section id="home" class="mx-auto max-w-[1320px] px-4 pb-14 pt-6 sm:px-6 lg:px-8">
+      <div class="hero-inner">
+        <div id="about" class="min-w-0">
+          <div class="mb-5 flex flex-wrap items-center gap-3 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-1.5 text-slate-200">
+              <span class="text-rose-400" aria-hidden="true">📍</span>
               {siteConfig.location}
             </span>
             <span
-              class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300"
+              class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/15 px-3 py-1 text-xs font-medium text-emerald-300"
             >
-              <span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+              <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" aria-hidden="true"></span>
               {siteConfig.status}
             </span>
           </div>
 
-          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            <span class="text-white">Paresh </span><span class="gradient-name">Khaneja</span>
+          <h1 class="text-[2.75rem] font-bold leading-tight tracking-tight sm:text-5xl lg:text-[3.25rem]">
+            <span class="text-white">Paresh </span><span class="gradient-surname">Khaneja</span>
           </h1>
-          <p class="mt-3 text-lg font-medium text-slate-200 sm:text-xl">{siteConfig.title}</p>
-          <p class="mt-6 max-w-2xl text-base leading-relaxed text-[var(--color-text-hero-muted)]">
+          <p class="mt-2 text-lg font-semibold text-white sm:text-xl">{siteConfig.title}</p>
+          <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-text-hero-muted)]">
             {siteConfig.heroBio}
           </p>
 
-          <div class="mt-8 flex flex-wrap gap-2">
+          <div class="mt-6 flex flex-wrap gap-2">
             {
               siteConfig.skillTags.map((tag) => (
-                <span class="pill-dark rounded-full px-3 py-1.5 text-xs font-medium">{tag}</span>
+                <span class="pill-dark rounded-full px-3 py-1.5 text-[11px] font-medium sm:text-xs">
+                  {tag}
+                </span>
               ))
             }
           </div>
 
-          <div class="mt-8 flex flex-wrap gap-3">
+          <div class="mt-7 flex flex-wrap gap-3">
             <a
               href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)]"
+              class="btn-resume-header inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-white"
             >
               Connect on LinkedIn <span aria-hidden="true">→</span>
             </a>
@@ -62,41 +71,41 @@ const toneMap = {
               href={siteConfig.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center rounded-lg border border-[var(--color-hero-border)] px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/5"
+              class="inline-flex items-center rounded-xl border border-slate-500/50 bg-slate-900/30 px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/5"
             >
               View GitHub
             </a>
             <a
               href={siteConfig.resumeUrl}
-              class="inline-flex items-center rounded-lg border border-[var(--color-hero-border)] px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/5"
+              class="inline-flex items-center rounded-xl border border-slate-500/50 bg-slate-900/30 px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/5"
             >
               Download Resume
             </a>
           </div>
         </div>
 
-        <div class="flex justify-center xl:justify-end">
+        <div class="portrait-glow mx-auto flex justify-center lg:mx-0 lg:justify-center">
           <img
             src={siteConfig.portraitUrl}
             alt={`Portrait of ${siteConfig.name}`}
-            width="280"
-            height="360"
+            width="250"
+            height="340"
             loading="eager"
-            class="h-[320px] w-[240px] rounded-2xl border border-[var(--color-hero-border)] object-cover shadow-2xl sm:h-[360px] sm:w-[280px]"
+            class="relative z-10 h-[300px] w-[230px] rounded-2xl border border-white/10 object-cover shadow-[0_20px_50px_rgba(0,0,0,0.45)] sm:h-[340px] sm:w-[250px]"
           />
         </div>
 
-        <aside class="space-y-3 xl:pt-4" aria-label="Highlights">
+        <aside class="space-y-2.5 lg:pt-2" aria-label="Highlights">
           {
             siteConfig.heroStats.map((stat) => (
-              <div class="stat-card flex items-start gap-3 rounded-xl px-4 py-3">
+              <div class="stat-card flex items-center gap-3 rounded-xl px-3.5 py-2.5">
                 <span
-                  class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-300"
+                  class="stat-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs"
                   aria-hidden="true"
                 >
                   ★
                 </span>
-                <p class="text-sm leading-snug text-slate-200">{stat.label}</p>
+                <p class="text-[13px] leading-snug text-slate-200">{stat.label}</p>
               </div>
             ))
           }
@@ -105,8 +114,8 @@ const toneMap = {
     </section>
   </div>
 
-  <section id="expertise" class="bg-[var(--color-page)] px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
+  <section id="expertise" class="section-light px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-[1320px]">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 class="text-3xl font-bold tracking-tight text-slate-900">
@@ -118,14 +127,14 @@ const toneMap = {
           {siteConfig.expertise.linkLabel} →
         </a>
       </div>
-      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {
           siteConfig.expertise.items.map((item) => (
-            <article class="section-card rounded-2xl p-5">
+            <article class:list={["expertise-card p-5", expertiseBorder[item.tone]]}>
               <div
                 class:list={[
                   "mb-4 flex h-11 w-11 items-center justify-center rounded-xl text-lg",
-                  toneMap[item.tone],
+                  iconBg[item.tone],
                 ]}
                 aria-hidden="true"
               >
@@ -148,8 +157,8 @@ const toneMap = {
     </div>
   </section>
 
-  <section id="project" class="bg-[var(--color-page)] px-4 pb-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
+  <section id="project" class="section-light px-4 pb-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-[1320px]">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 class="text-3xl font-bold tracking-tight text-slate-900">{fp.title}</h2>
@@ -166,11 +175,11 @@ const toneMap = {
       </div>
 
       <article class="featured-panel mt-8 overflow-hidden rounded-3xl p-6 lg:p-8">
-        <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.1fr)]">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)_minmax(0,1.15fr)]">
           <div>
             <div class="flex items-center gap-3">
               <div
-                class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600"
+                class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-xl text-blue-600"
                 aria-hidden="true"
               >
                 🗄️
@@ -190,7 +199,7 @@ const toneMap = {
             <div class="mt-4 flex flex-wrap gap-2">
               {
                 fp.tags.map((tag) => (
-                  <span class="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">
+                  <span class="rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">
                     {tag}
                   </span>
                 ))
@@ -209,7 +218,10 @@ const toneMap = {
               {
                 fp.features.map((feature) => (
                   <li class="flex items-start gap-2 text-sm text-slate-700">
-                    <span class="mt-0.5 text-[var(--color-primary)]" aria-hidden="true">✓</span>
+                    <span
+                      class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-[10px] text-blue-600"
+                      aria-hidden="true">✓</span
+                    >
                     {feature}
                   </li>
                 ))
@@ -217,14 +229,14 @@ const toneMap = {
             </ul>
           </div>
 
-          <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
             <img
               src={fp.screenshotUrl}
               alt="ADVP dashboard preview showing data pipeline validation"
               width="640"
               height="400"
               loading="lazy"
-              class="h-full min-h-[220px] w-full object-cover object-left-top"
+              class="h-full min-h-[240px] w-full object-cover object-left-top"
             />
           </div>
         </div>
@@ -232,64 +244,83 @@ const toneMap = {
     </div>
   </section>
 
-  <section id="experience" class="bg-[var(--color-page)] px-4 pb-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-      <div>
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900">
-          {siteConfig.experience.title}
-        </h2>
-        <p class="mt-2 text-slate-600">{siteConfig.experience.subtitle}</p>
+  <section id="experience" class="bg-[var(--color-page)] px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-[1320px]">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900">
+        {siteConfig.experience.title}
+      </h2>
+      <p class="mt-2 text-slate-600">{siteConfig.experience.subtitle}</p>
 
-        <div class="relative mt-10 space-y-8 pl-2">
-          <div class="absolute left-8 top-3 bottom-3 w-px bg-slate-200" aria-hidden="true"></div>
+      <div class="relative mt-12 hidden md:block">
+        <div class="experience-rail absolute left-0 right-0 top-8" aria-hidden="true"></div>
+        <div class="grid grid-cols-3 gap-6">
           {
             siteConfig.experience.items.map((job) => (
-              <div class="relative flex gap-4">
-                <CompanyLogo variant={job.logo} />
-                <div class="pt-1">
-                  <h3 class="font-semibold text-slate-900">{job.company}</h3>
-                  <p class="text-sm text-slate-600">{job.role}</p>
-                  <p class="mt-1 text-xs font-medium text-slate-500">{job.period}</p>
+              <div class="relative pt-14 text-center">
+                <div class="absolute left-1/2 top-0 -translate-x-1/2">
+                  <CompanyLogo variant={job.logo} />
                 </div>
+                <h3 class="font-semibold text-slate-900">{job.company}</h3>
+                <p class="mt-1 text-sm text-slate-600">{job.role}</p>
+                <p class="mt-1 text-xs font-medium text-slate-500">{job.period}</p>
               </div>
             ))
           }
         </div>
       </div>
 
-      <aside id="contact" class="contact-card self-start rounded-3xl p-6 lg:sticky lg:top-24">
-        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+      <div class="mt-8 space-y-6 md:hidden">
+        {
+          siteConfig.experience.items.map((job) => (
+            <div class="flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-4">
+              <CompanyLogo variant={job.logo} />
+              <div>
+                <h3 class="font-semibold text-slate-900">{job.company}</h3>
+                <p class="text-sm text-slate-600">{job.role}</p>
+                <p class="mt-1 text-xs font-medium text-slate-500">{job.period}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-[var(--color-page)] px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="contact-banner mx-auto flex max-w-[1320px] flex-col gap-6 rounded-3xl p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+      <div class="max-w-xl">
+        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
           ✉️
         </div>
-        <h2 class="text-xl font-bold text-slate-900">{siteConfig.contactCta.title}</h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+        <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">{siteConfig.contactCta.title}</h2>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
           {siteConfig.contactCta.description}
         </p>
-        <div class="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-          <a
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)]"
-          >
-            {siteConfig.contactCta.linkedinLabel}
-          </a>
-          <a
-            href={siteConfig.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
-          >
-            {siteConfig.contactCta.githubLabel}
-          </a>
-          <a
-            href={siteConfig.emailMe}
-            class="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50"
-          >
-            {siteConfig.contactCta.emailLabel}
-          </a>
-        </div>
-      </aside>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:justify-end">
+        <a
+          href={siteConfig.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-w-[140px] items-center justify-center rounded-xl bg-[var(--color-primary)] px-5 py-3 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)]"
+        >
+          {siteConfig.contactCta.linkedinLabel}
+        </a>
+        <a
+          href={siteConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-w-[140px] items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800"
+        >
+          {siteConfig.contactCta.githubLabel}
+        </a>
+        <a
+          href={siteConfig.emailMe}
+          class="inline-flex min-w-[140px] items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-800 hover:bg-slate-50"
+        >
+          {siteConfig.contactCta.emailLabel}
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
